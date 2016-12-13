@@ -131,7 +131,6 @@
     [super dealloc];
 }
 
-#pragma mark Methods for memento :caretaker role
 
 - (ScribbleMemento *) scribbleMementoWithCompleteSnapshot:(BOOL)hasCompleteSnapshot
 {
@@ -160,13 +159,12 @@
 }
 
 
-// Act as caretaker to get Memento object
 - (ScribbleMemento *) scribbleMemento
 {
   return [self scribbleMementoWithCompleteSnapshot:YES];
 }
 
-// Act as caretaker to set Memento object
+
 - (void) attachStateFromMemento:(ScribbleMemento *)memento
 {
     // attach any mark from a memento object

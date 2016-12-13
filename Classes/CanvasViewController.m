@@ -268,7 +268,12 @@
 
 
 #pragma mark -
-#pragma mark Draw Scribble Invocation Generation Methods
+#pragma mark Draw Scribble Invocation Generation Methods 
+
+/** 
+ * The NSInvocation class act as an command role to wrapper a scribble ojbect to perform the action.
+ * The two methods create two differents command for us.
+ */
 
 - (NSInvocation *) drawScribbleInvocation
 {
@@ -301,13 +306,22 @@
   return undrawInvocation;
 }
 
-#pragma mark Draw Scribble Command Methods
+#pragma mark Broker execute the command
 
 - (void) executeInvocation:(NSInvocation *)invocation 
         withUndoInvocation:(NSInvocation *)undoInvocation
 {
   [invocation retainArguments];
 
+    // called as:
+    // [[undoManager prepareWithInvocationTarget:self] unexecuteInvocation:undoInvocation withRedoInvocation:invocation]
+    // When undo is called, the specified target will be called with
+    // [unexecuteInvocation:undoInvocation withRedoInvocation:invocation]
+    
+    /*
+     * The undoManager to save the two commands and support the undo method
+     */
+    
   [[self.undoManager prepareWithInvocationTarget:self] 
    unexecuteInvocation:undoInvocation
    withRedoInvocation:invocation];
