@@ -15,6 +15,8 @@
 	
 }
 
+#pragma mark Methods for memento :caretaker role
+
 - (void) saveScribble:(Scribble *)scribble thumbnail:(UIImage *)image;
 - (NSInteger) numberOfScribbles;
 - (Scribble *) scribbleAtIndex:(NSInteger)index;
